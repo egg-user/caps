@@ -1,6 +1,5 @@
 const dbPool = require('../config/database');
 const jwt = require('jsonwebtoken');
-const secretKey = 'key';
 
 const getAllUsers = () => {
     const SQLQuery = 'SELECT * FROM akun';
@@ -61,4 +60,5 @@ module.exports = {
     loginUser,
     getUserByEmail,
     createToken,
+    getUserByEmail,
 }

@@ -41,6 +41,30 @@ const getUserbyID = async (req, res) => {
     }
 };
 
+const getUserByEmail = async (req, res) => {
+    const { email } = req.params;
+
+    try {
+        const [data] = await UsersModel.getUserByEmail(email);
+
+        if (!data.length) {
+            return res.status(404).json({
+                message: 'Data not found',
+            });
+        }
+
+        res.status(200).json({
+            message: 'Get by ID success',
+            data: data[0],
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Server error',
+            serverMessage: error,
+        });
+    }
+};
+
 const createNewUser = async (req, res) => {
     const {body} = req;
 
@@ -132,4 +156,5 @@ module.exports = {
     updateUser,
     deleteUser,
     loginUser,
+    getUserByEmail
 }
